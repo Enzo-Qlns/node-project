@@ -1,8 +1,12 @@
-import { createServer } from "http";
+import {
+    createServer,
+    IncomingMessage,
+    ServerResponse
+} from "http";
 import { readFile } from "fs";
 import { resolve } from "path";
 
-export const server = createServer((req, res) => {
+export const server = createServer((req: IncomingMessage, res: ServerResponse) => {
     if (req.method === "GET" && req.url === "/questions") {
         const filePath = resolve("./ressources/questions.json");
         sendFile(res, filePath);
@@ -15,7 +19,7 @@ export const server = createServer((req, res) => {
     }
 });
 
-function sendFile(res: any, filePath: string) {
+function sendFile(res: ServerResponse, filePath: string): void {
     readFile(filePath, "utf8", (err, data) => {
         if (err) {
             res.writeHead(500, { "Content-Type": "text/plain" });
