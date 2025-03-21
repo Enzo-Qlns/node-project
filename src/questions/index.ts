@@ -24,11 +24,11 @@ const askQuestions = (ask: (q: string) => Promise<string>) =>
 
 /** Pipeline */
 export const program = async (): Promise<void> => {
-  const questionsData = await readJson('src/questions/questions.json')();
+  const questionsData = await readJson('ressources/questions.json')();
   const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
   const ask = createAsk(rl);
   const answers = await askQuestions(ask)(questionsData.questions);
   rl.close();
-  await writeJson('src/questions/answers.json')(answers);
+  await writeJson('ressources/answers.json')(answers);
   console.log('✅ Réponses sauvegardées dans answers.json');
 };
