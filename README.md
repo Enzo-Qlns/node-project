@@ -28,6 +28,10 @@ Make sure you have the following installed:
     ```sh
     pnpm i
     ```
+5. Create a `.env` file in the root directory and add the following environment variables:
+    ```sh
+    cp .env.example .env
+    ```
 
 ### Running the Project
 
